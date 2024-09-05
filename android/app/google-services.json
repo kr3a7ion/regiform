@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "613178767010",
+    "project_id": "regform-2d1bb",
+    "storage_bucket": "regform-2d1bb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:613178767010:android:dc59ec101004ad636a89fb",
+        "android_client_info": {
+          "package_name": "com.kreattech.regiform"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApLGiI1BRYbClzIf1vIrsIkNmqFNfg2_4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
