@@ -4,6 +4,11 @@ import 'package:regiform/common/controllers/obscurecontroller.dart';
 
 final ObscureTextController obscureText = Get.put(ObscureTextController());
 
+Color borderColor = Colors.grey.shade400;
+Color iconColor = Colors.black;
+Color hintTextColor = Colors.grey.shade400;
+Color textFieldColor = Colors.black;
+
 Widget customTextField(
   TextEditingController textController, {
   double theHeight = 50,
@@ -21,7 +26,7 @@ Widget customTextField(
           height: theHeight,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              border: Border.all(width: 2, color: Colors.orange),
+              border: Border.all(width: 2, color: borderColor),
               color: Colors.white),
           child: Center(
             child: Padding(
@@ -29,9 +34,9 @@ Widget customTextField(
               child: TextFormField(
                 keyboardType: keyboardType,
                 controller: textController,
-                style: const TextStyle(
+                style: TextStyle(
                     fontSize: 13,
-                    color: Colors.orange,
+                    color: textFieldColor,
                     fontWeight: FontWeight.bold),
                 maxLines: 1,
                 decoration: InputDecoration(
@@ -42,19 +47,18 @@ Widget customTextField(
                   ),
                   floatingLabelBehavior: FloatingLabelBehavior.never,
                   labelText: lableText,
-                  labelStyle:
-                      const TextStyle(color: Colors.orange, fontSize: 13),
+                  labelStyle: TextStyle(color: hintTextColor, fontSize: 13),
                   prefixIcon: usePrefix
                       ? Icon(
                           leadingIcon,
-                          color: Colors.orange,
+                          color: iconColor,
                           size: 16,
                         )
                       : null,
                   suffixIcon: useSuffix
                       ? Icon(
                           suffixIcon,
-                          color: Colors.orange,
+                          color: iconColor,
                           size: 16,
                         )
                       : null,
@@ -83,7 +87,7 @@ Widget customPasswordTextField(
           height: theHeight,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
-              border: Border.all(width: 2, color: Colors.orange),
+              border: Border.all(width: 2, color: borderColor),
               color: Colors.white),
           child: Center(
             child: Padding(
@@ -94,9 +98,9 @@ Widget customPasswordTextField(
                   obscureText: obscureText.isActive.value ? false : true,
                   obscuringCharacter: '*',
                   controller: passwordController,
-                  style: const TextStyle(
+                  style: TextStyle(
                       fontSize: 13,
-                      color: Colors.orange,
+                      color: textFieldColor,
                       fontWeight: FontWeight.bold),
                   maxLines: 1,
                   decoration: InputDecoration(
@@ -106,11 +110,10 @@ Widget customPasswordTextField(
                     ),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                     labelText: lableText,
-                    labelStyle:
-                        const TextStyle(color: Colors.orange, fontSize: 13),
+                    labelStyle: TextStyle(color: hintTextColor, fontSize: 13),
                     prefixIcon: Icon(
                       leadingIcon,
-                      color: Colors.orange,
+                      color: iconColor,
                       size: 16,
                     ),
                     suffixIcon: IconButton(
@@ -121,7 +124,7 @@ Widget customPasswordTextField(
                         obscureText.isActive.value
                             ? Icons.visibility
                             : Icons.visibility_off,
-                        color: Colors.orange,
+                        color: iconColor,
                         size: 16,
                       ),
                     ),

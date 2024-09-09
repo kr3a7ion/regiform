@@ -18,15 +18,19 @@ class Forgetpassword extends StatelessWidget {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
             gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Colors.white,
-            Colors.white,
             // Colors.white,
-            Colors.orangeAccent,
+            // Colors.white,
+            // // Colors.white,
+            // Colors.orangeAccent,
+            Colors.deepPurple.shade100,
+            Colors.deepPurple.shade200,
+            Colors.deepPurple.shade400,
+            Colors.deepPurple,
           ],
         )),
         child: SingleChildScrollView(
@@ -34,19 +38,19 @@ class Forgetpassword extends StatelessWidget {
             child: SizedBox(
               width: MediaQuery.of(context).size.width / 3,
               child: Column(
-                // crossAxisAlignment: CrossAxisAlignment.center,
-                // mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const SizedBox(
                     height: 40,
                   ),
                   smallText16('F O R G E T ',
                       theSize: 30,
-                      theColor: Colors.orange,
+                      theColor: Colors.white,
                       theFontWeight: FontWeight.bold),
                   smallText16('P A S S W O R D',
                       theSize: 30,
-                      theColor: Colors.orange,
+                      theColor: Colors.white,
                       theFontWeight: FontWeight.bold),
                   const SizedBox(height: 40),
                   customTextField(

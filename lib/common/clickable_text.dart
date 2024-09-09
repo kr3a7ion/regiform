@@ -20,7 +20,7 @@ Widget clickableText({
 Widget smallText16(
   String theText, {
   double theSize = 16,
-  Color theColor = Colors.orange,
+  Color theColor = Colors.white,
   FontWeight theFontWeight = FontWeight.normal,
 }) {
   return Text(

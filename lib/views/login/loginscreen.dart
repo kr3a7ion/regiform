@@ -11,6 +11,9 @@ class Loginscreen extends StatelessWidget {
   Loginscreen({super.key});
 
   final SignInController _signInController = Get.put(SignInController());
+  final snack = const SnackBar(
+    content: Text('Success  Registration successful!'),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -20,15 +23,26 @@ class Loginscreen extends StatelessWidget {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
             gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Colors.white,
-            Colors.white,
-            Colors.white,
-            Colors.orangeAccent,
+            // Colors.white,
+            // Colors.white,
+            // Color.fromARGB(255, 219, 253, 179),
+            // Color.fromARGB(255, 203, 248, 151),
+            // Color.fromARGB(255, 196, 247, 138),
+            // Color.fromARGB(255, 204, 255, 146),
+            // Color.fromARGB(255, 196, 247, 138),
+            // Color.fromARGB(255, 188, 249, 118),
+            // //Colors.white,
+            // Color.fromARGB(255, 165, 249, 69),
+            // Color.fromARGB(255, 154, 254, 39),
+            Colors.deepPurple.shade100,
+            Colors.deepPurple.shade200,
+            Colors.deepPurple.shade400,
+            Colors.deepPurple,
           ],
         )),
         child: SafeArea(
@@ -41,17 +55,20 @@ class Loginscreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const SizedBox(height: 20),
-                    Container(
+                    SizedBox(
                       height: 80,
                       width: 80,
-                      color: Colors.deepOrangeAccent,
+                      child: Placeholder(
+                        child: smallText16('The Logo'),
+                      ),
                     ),
                     const SizedBox(height: 30),
                     Column(
                       children: [
-                        customTextField(
-                          _signInController.signInEmailController,
-                        ),
+                        customTextField(_signInController.signInEmailController,
+                            keyboardType: TextInputType.emailAddress,
+                            leadingIcon: Icons.mail,
+                            lableText: 'Email'),
                         const SizedBox(height: 20),
                         customPasswordTextField(
                           _signInController.signInPasswordController,
@@ -80,7 +97,11 @@ class Loginscreen extends StatelessWidget {
                     Obx(() => _signInController.errorMessage.isNotEmpty
                         ? Text(
                             _signInController.errorMessage.value,
-                            style: const TextStyle(color: Colors.red),
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              color: Colors.red,
+                              fontSize: 14,
+                            ),
                           )
                         : const SizedBox.shrink()),
                     const SizedBox(height: 16),
@@ -90,6 +111,10 @@ class Loginscreen extends StatelessWidget {
                             theText: 'Login',
                             onTapped: () {
                               _signInController.signIn();
+
+                              // _signInController.signInEmailController.clear();
+                              // _signInController.signInPasswordController
+                              //     .clear();
                             },
                           )),
                     const SizedBox(height: 40),

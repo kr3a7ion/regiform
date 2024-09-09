@@ -19,15 +19,21 @@ class Signup extends StatelessWidget {
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: MediaQuery.of(context).size.width,
-        decoration: const BoxDecoration(
+        decoration: BoxDecoration(
             gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Colors.white,
-            Colors.white,
             // Colors.white,
-            Colors.orangeAccent,
+            // Colors.white,
+            // // Colors.white,
+            // Colors.orangeAccent,
+
+            Colors.deepPurple.shade100,
+            Colors.deepPurple.shade200,
+            Colors.deepPurple.shade400,
+
+            Colors.deepPurple,
           ],
         )),
         child: SafeArea(
@@ -40,12 +46,19 @@ class Signup extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const SizedBox(height: 20),
-                    Container(
+                    SizedBox(
                       height: 80,
                       width: 80,
-                      color: Colors.deepOrangeAccent,
+                      child: Placeholder(
+                        child: smallText16('The Logo'),
+                      ),
                     ),
-                    const SizedBox(height: 30),
+                    const SizedBox(height: 20),
+                    smallText16('R E G I S T R A T I O N',
+                        theSize: 30,
+                        theColor: Colors.white,
+                        theFontWeight: FontWeight.bold),
+                    const SizedBox(height: 20),
                     customTextField(
                       _signUpController.usernameController,
                     ),
@@ -86,6 +99,12 @@ class Signup extends StatelessWidget {
                             },
                           )),
                     const SizedBox(height: 20),
+                    largeOutlinedButton(
+                        theText: 'Go back',
+                        onTapped: () {
+                          Get.back();
+                        }),
+                    const SizedBox(height: 30),
                   ],
                 ),
               ),

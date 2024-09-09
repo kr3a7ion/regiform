@@ -13,7 +13,7 @@ Widget largeButton({
     width: double.infinity,
     child: ElevatedButton(
         style: ButtonStyle(
-            backgroundColor: WidgetStateProperty.all(Colors.orange),
+            backgroundColor: WidgetStateProperty.all(Colors.grey),
             shape: WidgetStateProperty.all(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(thebuttonRadius),
             ))),
@@ -35,15 +35,15 @@ Widget largeOutlinedButton({
   double thebuttonHeight = 50,
   double theTextSize = 16,
   double thebuttonRadius = 10,
-  Color theTextColor = Colors.orange,
+  Color theTextColor = Colors.grey,
 }) {
   return SizedBox(
     height: thebuttonHeight,
     width: double.infinity,
     child: OutlinedButton(
         style: ButtonStyle(
-            side: const WidgetStatePropertyAll(BorderSide(
-              color: Colors.orangeAccent,
+            side: WidgetStatePropertyAll(BorderSide(
+              color: Colors.grey.shade400,
               width: 1.5,
             )),
             backgroundColor: WidgetStateProperty.all(Colors.white),
