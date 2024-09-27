@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
 
+Color custompurpleColor = const Color(0xff220749);
+Color customPurpleColor2 = const Color(0xff4D1285);
 Widget largeButton({
   required String theText,
   required Function() onTapped,
   double thebuttonHeight = 50,
+  double thewidth = double.infinity,
   double theTextSize = 16,
   double thebuttonRadius = 10,
   Color theTextColor = Colors.white,
 }) {
   return SizedBox(
     height: thebuttonHeight,
-    width: double.infinity,
+    width: thewidth,
     child: ElevatedButton(
         style: ButtonStyle(
-            backgroundColor: WidgetStateProperty.all(Colors.grey),
+            backgroundColor: WidgetStateProperty.all(const Color(0xff4D1285)),
             shape: WidgetStateProperty.all(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(thebuttonRadius),
             ))),
@@ -33,18 +36,19 @@ Widget largeOutlinedButton({
   required String theText,
   required Function() onTapped,
   double thebuttonHeight = 50,
+  double thewidth = double.infinity,
   double theTextSize = 16,
   double thebuttonRadius = 10,
-  Color theTextColor = Colors.grey,
+  Color theTextColor = const Color(0xff4D1285),
 }) {
   return SizedBox(
     height: thebuttonHeight,
-    width: double.infinity,
+    width: thewidth,
     child: OutlinedButton(
         style: ButtonStyle(
             side: WidgetStatePropertyAll(BorderSide(
-              color: Colors.grey.shade400,
-              width: 1.5,
+              color: custompurpleColor,
+              width: 2,
             )),
             backgroundColor: WidgetStateProperty.all(Colors.white),
             shape: WidgetStateProperty.all(RoundedRectangleBorder(

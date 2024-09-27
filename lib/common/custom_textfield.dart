@@ -4,8 +4,8 @@ import 'package:regiform/common/controllers/obscurecontroller.dart';
 
 final ObscureTextController obscureText = Get.put(ObscureTextController());
 
-Color borderColor = Colors.grey.shade400;
-Color iconColor = Colors.black;
+Color borderColor = const Color(0xff220749);
+Color iconColor = const Color(0xff220749);
 Color hintTextColor = Colors.grey.shade400;
 Color textFieldColor = Colors.black;
 

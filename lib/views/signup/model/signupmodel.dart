@@ -1,12 +1,14 @@
 import 'package:get/get.dart';
 import 'package:regiform/common/controllers/dbcontroller.dart';
 
-final Dbcontroller _dbcontroller = Get.put(Dbcontroller());
 
-class CreateUser {
+
+class CreateUser extends GetxController{
   String? username;
   String? email;
   String? uid;
+
+  final Dbcontroller _dbcontroller = Get.put(Dbcontroller());
 
 //This method is used to create the user in firestore
   Future<void> createUser() async {

@@ -1,5 +1,6 @@
 //
 import 'package:flutter/material.dart';
+import 'package:regiform/common/custom_largebutton.dart';
 
 Widget clickableText({
   required Function() ontapped,
@@ -11,6 +12,8 @@ Widget clickableText({
       child: FittedBox(
         fit: BoxFit.contain,
         child: smallText16(
+          theColor: custompurpleColor,
+          theFontWeight: FontWeight.bold,
           theText,
           theSize: theSize,
         ),

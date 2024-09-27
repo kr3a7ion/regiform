@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:regiform/common/controllers/authcontroller.dart';
 import 'package:regiform/views/login/loginscreen.dart';
-// import 'package:regiform/views/signup/controllers/dbcontroller.dart';
 import 'package:regiform/views/signup/controllers/validator_class.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:regiform/views/signup/model/signupmodel.dart';
@@ -12,9 +12,8 @@ class SignUpController extends GetxController {
   final passwordController = TextEditingController();
   final confirmPasswordController = TextEditingController();
 
-  final FirebaseAuth _auth = FirebaseAuth.instance;
-  // final Dbcontroller _db = Get.put(Dbcontroller());
-  final CreateUser _createUserDB = CreateUser();
+  final Authcontroller _auth = Get.put(Authcontroller());
+  final CreateUser _createUserDB = Get.put(CreateUser());
 
   var isLoading = false.obs;
   var errorMessage = ''.obs;
@@ -71,7 +70,7 @@ class SignUpController extends GetxController {
     try {
       isLoading.value = true;
       UserCredential userCredential =
-          await _auth.createUserWithEmailAndPassword(
+          await _auth.authIn.createUserWithEmailAndPassword(
         email: emailController.text.trim(),
         password: passwordController.text.trim(),
       );
