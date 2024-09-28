@@ -15,7 +15,7 @@ Widget navigateToScreen() {
       builder: (context, snapshot) {
         if (snapshot.hasData && signInController.userisLoggedIn.value) {
           return HomeScreen();
-        } else if (snapshot.hasError &&
+        } else if (snapshot.hasError ||
             !signInController.userisLoggedIn.value) {
           return Loginscreen();
         } else {

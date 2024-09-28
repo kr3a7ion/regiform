@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:regiform/common/controllers/obscurecontroller.dart';
+import 'package:regiform/common/custom_largebutton.dart';
 
 final ObscureTextController obscureText = Get.put(ObscureTextController());
 
-Color borderColor = const Color(0xff220749);
-Color iconColor = const Color(0xff220749);
+Color borderColor = custompurpleColor;
+Color iconColor = customPurpleColor2;
 Color hintTextColor = Colors.grey.shade400;
 Color textFieldColor = Colors.black;
 

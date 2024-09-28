@@ -9,7 +9,7 @@ import 'package:regiform/common/widgets/showsnackbar.dart';
 import 'package:regiform/views/login/controllers/navigator.dart';
 import 'package:regiform/views/login/controllers/validator/signinvalidator.dart';
 import 'package:regiform/views/login/loginscreen.dart';
-import 'package:regiform/views/login/model/user_data_model.dart';
+// import 'package:regiform/views/login/model/user_data_model.dart';
 import 'package:regiform/views/login/model/user_model.dart';
 
 enum AuthProblems {
@@ -99,13 +99,16 @@ class SignInController extends GetxController {
     super.onClose();
   }
 
+  // Define the timeout duration (e.g., 10 seconds)
+  final Duration _loginTimeoutDuration = const Duration(seconds: 30);
   var isLoading = false.obs;
   var errorMessage = ''.obs;
   var theloginFirbaseError = ''.obs;
   var currentUserName = ''.obs;
   final RxBool userisLoggedIn = false.obs;
-  // ignore: prefer_typing_uninitialized_variables
-  var _userData;
+  dynamic _userData;
+
+  final String _usernameMapString = 'username';
 
 // Clear cached session during initialization
   void _clearSession() {
@@ -122,20 +125,16 @@ class SignInController extends GetxController {
     }
   }
 
-  // Define the timeout duration (e.g., 10 seconds)
-  final Duration _loginTimeoutDuration = const Duration(seconds: 30);
-
   Future<void> getCurrentUser() async {
     if (userisLoggedIn.value) {
       if (_userData != null) {
-        DisplayUserData displayUserData = DisplayUserData.fromMap(_userData);
-        if (displayUserData.email != _userData.email) {
+        //DisplayUserData displayUserData = DisplayUserData.fromMap(_userData);
+        if (_userData['email'] != signInEmailController.text.trim()) {
           _clearSession();
           throw Exception('Email mismatch');
         }
-        currentUserName.value = displayUserData.userName ?? 'unknown';
+        currentUserName.value = _userData[_usernameMapString] ?? 'Unavailable';
       } else {
-        currentUserName.value = 'unknown';
         throw Exception('No user logged in');
       }
     } else {
@@ -147,7 +146,6 @@ class SignInController extends GetxController {
 
   Future<void> currentUser() async {
     try {
-      print('Runing current user now');
       // Get the current user and proceed only if the user is successfully logged in
       User? user = _auth.authIn.currentUser;
 
@@ -157,14 +155,12 @@ class SignInController extends GetxController {
         var userData = await _fetchUserDataModel.fetchUserData();
         _userData = userData;
 
-        await getCurrentUser();
-
         if (userData == null) {
           throw Exception('User data not found.');
         }
-
         // Mark user as logged in only if the data is valid
         userisLoggedIn.value = true;
+        await getCurrentUser();
       } else {
         throw Exception('User data not found');
       }
@@ -219,8 +215,8 @@ class SignInController extends GetxController {
       // Handle login timeout
       errorMessage.value =
           'Login timeout. Please check your internet connection and try again.';
-    } catch (e) {
-      handleError(e);
+      // } catch (e) {
+      //   handleError(e);
     } finally {
       isLoading.value = false;
     }

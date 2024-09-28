@@ -38,7 +38,7 @@ class Loginscreen extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        //const SizedBox(height: 20),
+                        
                         SizedBox(
                           height: 80,
                           width: 80,
@@ -89,14 +89,16 @@ class Loginscreen extends StatelessWidget {
                                 _signInController.errorMessage.value,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                  color: Colors.red,
+                                  color: Colors.black,
                                   fontSize: 14,
                                 ),
                               )
                             : const SizedBox.shrink()),
                         const SizedBox(height: 10),
                         Obx(() => _signInController.isLoading.value
-                            ? const Center(child: CircularProgressIndicator())
+                            ? const Center(child: CircularProgressIndicator(
+                              backgroundColor: Colors.deepPurple,
+                            ))
                             : largeButton(
                                 theText: 'Login',
                                 onTapped: () {

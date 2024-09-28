@@ -19,6 +19,9 @@ class Homecontroller extends GetxController {
   var isLoading = false.obs;
   var errorMessage = ''.obs;
   var uID = ''.obs;
+  var genderSelect = RxnString();
+  var countrySelect = RxnString();
+  var maritalStatusSelect = RxnString();
 
   @override
   void onInit() {

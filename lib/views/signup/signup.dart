@@ -17,7 +17,6 @@ class Signup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
       body: Container(
         height: MediaQuery.of(context).size.height,
@@ -26,18 +25,6 @@ class Signup extends StatelessWidget {
             image: DecorationImage(
                 image: AssetImage('assets/backgrounds/newbk.png'),
                 fit: BoxFit.cover)),
-        // decoration: BoxDecoration(
-        //     gradient: LinearGradient(
-        //   begin: Alignment.topLeft,
-        //   end: Alignment.bottomRight,
-        //   colors: [
-        //     Colors.deepPurple.shade100,
-        //     Colors.deepPurple.shade200,
-        //     Colors.deepPurple.shade400,
-
-        //     Colors.deepPurple,
-        //   ],
-        // )),
         child: SafeArea(
           child: SingleChildScrollView(
             child: Center(
@@ -79,7 +66,7 @@ class Signup extends StatelessWidget {
                       customPasswordTextField(
                           _signUpController.confirmPasswordController,
                           lableText: 'Confirm passowrd'),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 12),
                       clickableText(
                           ontapped: () {
                             Get.offAll(() => Loginscreen());
@@ -89,7 +76,7 @@ class Signup extends StatelessWidget {
                       Obx(() => _signUpController.errorMessage.isNotEmpty
                           ? Text(
                               _signUpController.errorMessage.value,
-                              style: const TextStyle(color: Colors.red),
+                              style: const TextStyle(color: Colors.black),
                             )
                           : const SizedBox.shrink()),
                       const SizedBox(height: 16),

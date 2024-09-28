@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
 import 'package:regiform/firebase_options.dart';
+//import 'package:regiform/views/home/homescreen.dart';
 import 'package:regiform/views/login/loginscreen.dart';
 
 void main() async {
@@ -59,6 +60,7 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
             useMaterial3: true,
           ),
+          //home: HomeScreen(),
           home: Loginscreen(),
         );
       },

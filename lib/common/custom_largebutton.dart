@@ -16,7 +16,7 @@ Widget largeButton({
     width: thewidth,
     child: ElevatedButton(
         style: ButtonStyle(
-            backgroundColor: WidgetStateProperty.all(const Color(0xff4D1285)),
+            backgroundColor: WidgetStateProperty.all(custompurpleColor),
             shape: WidgetStateProperty.all(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(thebuttonRadius),
             ))),
