@@ -69,30 +69,3 @@ class MyApp extends StatelessWidget {
 }
 
 
-
-// class MyApp extends StatelessWidget {
-//   const MyApp({super.key});
-
-//   // This widget is the root of your application.
-//   @override
-//   Widget build(BuildContext context) {
-//     // Setting device orientation to landscape
-//     SystemChrome.setPreferredOrientations([
-//       DeviceOrientation.landscapeRight,
-//       DeviceOrientation.landscapeLeft,
-//     ]);
-//     return GetMaterialApp(
-//         debugShowCheckedModeBanner: false,
-//         title: 'RegiForm',
-//         theme: ThemeData(
-//           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
-//           useMaterial3: true,
-//         ),
-//         home: Container(
-//           height: double.infinity,
-//           width: double.infinity,
-//           color: Colors.blueAccent,
-//         ) //Loginscreen(),
-//         );
-//   }
-// }
