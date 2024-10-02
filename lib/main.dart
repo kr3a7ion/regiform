@@ -3,15 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/route_manager.dart';
 import 'package:regiform/firebase_options.dart';
-//import 'package:regiform/views/home/homescreen.dart';
-import 'package:regiform/views/login/loginscreen.dart';
+import 'package:regiform/views/home/homescreen.dart';
+//import 'package:regiform/views/login/loginscreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
   runApp(const MyApp());
 }
+
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -60,8 +62,8 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepOrange),
             useMaterial3: true,
           ),
-          //home: HomeScreen(),
-          home: Loginscreen(),
+          home: HomeScreen(),
+         // home: Loginscreen(),
         );
       },
     );

@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:regiform/common/controllers/authcontroller.dart';
+//import 'package:regiform/common/controllers/authcontroller.dart';
 import 'package:regiform/views/home/controllers/validator_class.dart';
 import 'package:regiform/views/home/model/formdb_model.dart';
 
@@ -13,7 +13,7 @@ class Homecontroller extends GetxController {
   final mobileTextController = TextEditingController();
   final sexTextController = TextEditingController();
 
-  final Authcontroller _auth = Get.put(Authcontroller());
+ // final Authcontroller _auth = Get.put(Authcontroller());
   final GuestFormData _formData = Get.put(GuestFormData());
 
   var isLoading = false.obs;
@@ -25,7 +25,7 @@ class Homecontroller extends GetxController {
 
   @override
   void onInit() {
-    uID.value = _auth.authIn.currentUser!.uid;
+    //uID.value = _auth.authIn.currentUser!.uid;
     super.onInit();
   }
 

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:regiform/common/clickable_text.dart';
 import 'package:regiform/common/custom_largebutton.dart';
 import 'package:regiform/common/custom_textfield.dart';
+import 'package:regiform/common/widgets/applogo.dart';
 import 'package:regiform/common/widgets/frostybackground.dart';
 import 'package:regiform/views/login/loginscreen.dart';
 import 'package:regiform/views/signup/controllers/signup_controller.dart';
@@ -37,13 +38,7 @@ class Signup extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       const SizedBox(height: 20),
-                      SizedBox(
-                        height: 80,
-                        width: 80,
-                        child: Placeholder(
-                          child: smallText16('The Logo'),
-                        ),
-                      ),
+                      appLogo(),
                       const SizedBox(height: 20),
                       smallText16('R E G I S T R A T I O N',
                           theSize: 30,

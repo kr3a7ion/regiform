@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:regiform/common/clickable_text.dart';
 import 'package:regiform/common/custom_largebutton.dart';
 import 'package:regiform/common/custom_textfield.dart';
+import 'package:regiform/common/widgets/customdatepicker.dart';
+import 'package:regiform/common/widgets/customtimepicker.dart';
 import 'package:regiform/views/home/controllers/homecontroller.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:regiform/views/home/widget/homewidgets.dart';
@@ -10,6 +12,7 @@ import 'package:regiform/views/home/widget/homewidgets.dart';
 final Homecontroller homecontroller = Get.put(Homecontroller());
 const double textFieldHieght = 55;
 
+// This first widget is the first welcome text
 Widget customWelcome(BuildContext context, PageController theController,
     {int theIndex = 0}) {
   return Row(
@@ -25,94 +28,10 @@ Widget customWelcome(BuildContext context, PageController theController,
   );
 }
 
-Widget customregformPage01(
-  BuildContext context,
-  PageController theController, {
-  int theIndex = 0,
-}) {
-  return SingleChildScrollView(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(
-          height: 80,
-        ),
-
-        // Identification Section
-        smallText16('I D E N T I F I C A T I O N - D E T A I L S',
-            theSize: 16,
-            theColor: custompurpleColor,
-            theFontWeight: FontWeight.bold),
-        const SizedBox(height: 15),
-        customTextField(
-          keyboardType: TextInputType.text,
-          theHeight: textFieldHieght,
-          homecontroller.addressTextController,
-          lableText: 'Passport ID',
-          leadingIcon: FontAwesomeIcons.idCardClip,
-        ),
-        const SizedBox(height: 15),
-        customTextField(
-          keyboardType: TextInputType.text,
-          theHeight: textFieldHieght,
-          homecontroller.addressTextController,
-          lableText: 'Visa Validity',
-          leadingIcon: FontAwesomeIcons.passport,
-        ),
-        const SizedBox(height: 15),
-        customTextField(
-          keyboardType: TextInputType.streetAddress,
-          theHeight: textFieldHieght,
-          homecontroller.addressTextController,
-          lableText: 'Country of Residence',
-          leadingIcon: FontAwesomeIcons.mapLocationDot,
-        ),
-      ],
-    ),
-  );
-}
-
-Widget customregformPage02(
-  BuildContext context,
-  PageController theController, {
-  int theIndex = 0,
-}) {
-  return SingleChildScrollView(
-    child: Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const SizedBox(
-          height: 80,
-        ),
-
-        // Address Section
-        smallText16('A D D R E S S - D E T A I L S',
-            theSize: 16,
-            theColor: custompurpleColor,
-            theFontWeight: FontWeight.bold),
-        const SizedBox(height: 15),
-        customTextField(
-          keyboardType: TextInputType.streetAddress,
-          theHeight: textFieldHieght,
-          homecontroller.addressTextController,
-          lableText: 'Address',
-          leadingIcon: FontAwesomeIcons.city,
-        ),
-        const SizedBox(height: 15),
-        customTextField(
-          keyboardType: TextInputType.streetAddress,
-          theHeight: textFieldHieght,
-          homecontroller.addressTextController,
-          lableText: 'Company',
-          leadingIcon: FontAwesomeIcons.buildingColumns,
-        ),
-      ],
-    ),
-  );
-}
-
+/// This Wiget Page 1, 01, 02, Covers Personal details
+/// Identification detals and Address
+/// Informations widgets
+///
 Widget customregformPage1(
   BuildContext context,
   PageController theController, {
@@ -160,6 +79,8 @@ Widget customregformPage1(
           leadingIcon: Icons.phone_android,
         ),
         const SizedBox(height: 15),
+        customDataPicter(context: context),
+        const SizedBox(height: 15),
         customDropdownGender(),
         const SizedBox(height: 15),
         customDropdownMaritalStatus(),
@@ -167,20 +88,16 @@ Widget customregformPage1(
         customDropdownSelectCountry(),
         const SizedBox(height: 15),
 
-        SizedBox(height: 60)
+        SizedBox(height: 80)
       ],
     ),
   );
 }
 
-///
-///
-
-Widget customregformPage2(
+Widget customregformPage01(
   BuildContext context,
   PageController theController, {
   int theIndex = 0,
-  String theHeaderText = '',
 }) {
   return SingleChildScrollView(
     child: Column(
@@ -190,38 +107,134 @@ Widget customregformPage2(
         const SizedBox(
           height: 80,
         ),
-        smallText16(theHeaderText,
-            theSize: 14,
-            theColor: customPurpleColor2,
+
+        // Identification Section
+        smallText16('I D E N T I F I C A T I O N - D E T A I L S',
+            theSize: 16,
+            theColor: custompurpleColor,
             theFontWeight: FontWeight.bold),
-        const SizedBox(height: 20),
+        const SizedBox(height: 15),
         customTextField(
+          keyboardType: TextInputType.text,
           theHeight: textFieldHieght,
-          homecontroller.nameTextController,
-          lableText: 'Fullname',
-          leadingIcon: Icons.person_2,
+          homecontroller.addressTextController,
+          lableText: 'Passport ID',
+          leadingIcon: FontAwesomeIcons.idCardClip,
         ),
-        const SizedBox(
-          height: 15,
-        ),
+        const SizedBox(height: 15),
         customTextField(
+          keyboardType: TextInputType.text,
           theHeight: textFieldHieght,
-          homecontroller.emailTextController,
-          lableText: 'Email',
-          leadingIcon: Icons.email,
+          homecontroller.addressTextController,
+          lableText: 'Visa Validity',
+          leadingIcon: FontAwesomeIcons.passport,
         ),
+        const SizedBox(height: 15),
+        customDropdownResidency(), // Note to self Possible update to make this searchable dropdown
+      ],
+    ),
+  );
+}
+
+Widget customregformPage02(
+  BuildContext context,
+  PageController theController, {
+  int theIndex = 0,
+}) {
+  return SingleChildScrollView(
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
         const SizedBox(
-          height: 15,
+          height: 80,
         ),
+
+        // Address Section
+        smallText16('A D D R E S S - D E T A I L S',
+            theSize: 16,
+            theColor: custompurpleColor,
+            theFontWeight: FontWeight.bold),
+        const SizedBox(height: 15),
         customTextField(
+          keyboardType: TextInputType.streetAddress,
           theHeight: textFieldHieght,
           homecontroller.addressTextController,
           lableText: 'Address',
-          leadingIcon: Icons.location_city,
+          leadingIcon: FontAwesomeIcons.city,
         ),
+        const SizedBox(height: 15),
+        customTextField(
+          keyboardType: TextInputType.streetAddress,
+          theHeight: textFieldHieght,
+          homecontroller.addressTextController,
+          lableText: 'Company',
+          leadingIcon: FontAwesomeIcons.buildingColumns,
+        ),
+      ],
+    ),
+  );
+}
+
+///
+///This widget Page2 Covers the Travel detail widgets
+///
+Widget customregformPage2(
+  BuildContext context,
+  PageController theController, {
+  int theIndex = 0,
+}) {
+  return SingleChildScrollView(
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
         const SizedBox(
-          height: 15,
+          height: 80,
         ),
+
+        // Address Section
+        smallText16('T R A V E L - D E T A I L S',
+            theSize: 16,
+            theColor: custompurpleColor,
+            theFontWeight: FontWeight.bold),
+        const SizedBox(height: 15),
+        customDataPicter(
+            context: context,
+            labelText: 'Arrival Date',
+            leadingIcon: FontAwesomeIcons.calendarDay),
+        const SizedBox(height: 15),
+        customTimePicker(
+            context: context,
+            labelText: 'Arrival Time',
+            leadingIcon: FontAwesomeIcons.clock),
+        const SizedBox(height: 15),
+        customDataPicter(
+            context: context,
+            labelText: 'Departure Date',
+            leadingIcon: FontAwesomeIcons.calendarCheck),
+        const SizedBox(height: 15),
+        customTimePicker(
+            context: context,
+            labelText: 'Departure Time',
+            leadingIcon: FontAwesomeIcons.clock),
+        const SizedBox(height: 15),
+        customTextField(
+          keyboardType: TextInputType.streetAddress,
+          theHeight: textFieldHieght,
+          homecontroller.addressTextController,
+          lableText: 'Coming from where?',
+          leadingIcon: FontAwesomeIcons.map,
+        ),
+        const SizedBox(height: 15),
+        customTextField(
+          keyboardType: TextInputType.streetAddress,
+          theHeight: textFieldHieght,
+          homecontroller.addressTextController,
+          lableText: 'Going to where?',
+          leadingIcon: FontAwesomeIcons.map,
+        ),
+        const SizedBox(height: 80),
       ],
     ),
   );

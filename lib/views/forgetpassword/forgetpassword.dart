@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:regiform/common/clickable_text.dart';
 import 'package:regiform/common/custom_largebutton.dart';
 import 'package:regiform/common/custom_textfield.dart';
+import 'package:regiform/common/widgets/applogo.dart';
 import 'package:regiform/common/widgets/frostybackground.dart';
 import 'package:regiform/views/forgetpassword/controller/forgetpasswordcontroller.dart';
 
@@ -23,17 +24,6 @@ class Forgetpassword extends StatelessWidget {
             image: DecorationImage(
                 image: AssetImage('assets/backgrounds/newbk.png'),
                 fit: BoxFit.cover)),
-        // decoration: BoxDecoration(
-        //     gradient: LinearGradient(
-        //   begin: Alignment.topLeft,
-        //   end: Alignment.bottomRight,
-        //   colors: [
-        //     Colors.deepPurple.shade100,
-        //     Colors.deepPurple.shade200,
-        //     Colors.deepPurple.shade400,
-        //     Colors.deepPurple,
-        //   ],
-        // )),
         child: SingleChildScrollView(
           padding: const EdgeInsets.only(top: 80),
           child: Center(
@@ -45,9 +35,7 @@ class Forgetpassword extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    // const SizedBox(
-                    //   height: 40,
-                    // ),
+                    appLogo(),
                     smallText16('F O R G E T ',
                         theSize: 30,
                         theColor: custompurpleColor,
