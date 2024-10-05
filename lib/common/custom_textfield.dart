@@ -12,7 +12,10 @@ Color textFieldColor = Colors.black;
 
 Widget customTextField(
   TextEditingController textController, {
-  double theHeight = 50,
+  double theHeight = 70,
+  double thefontSize = 16,
+  double thelableFontSize = 16,
+  double theIconSize = 20,
   String lableText = 'Username',
   TextInputType keyboardType = TextInputType.name,
   IconData leadingIcon = Icons.person,
@@ -36,7 +39,7 @@ Widget customTextField(
                 keyboardType: keyboardType,
                 controller: textController,
                 style: TextStyle(
-                    fontSize: 13,
+                    fontSize: thefontSize,
                     color: textFieldColor,
                     fontWeight: FontWeight.bold),
                 maxLines: 1,
@@ -48,19 +51,20 @@ Widget customTextField(
                   ),
                   floatingLabelBehavior: FloatingLabelBehavior.never,
                   labelText: lableText,
-                  labelStyle: TextStyle(color: hintTextColor, fontSize: 13),
+                  labelStyle: TextStyle(
+                      color: hintTextColor, fontSize: thelableFontSize),
                   prefixIcon: usePrefix
                       ? Icon(
                           leadingIcon,
                           color: iconColor,
-                          size: 16,
+                          size: theIconSize,
                         )
                       : null,
                   suffixIcon: useSuffix
                       ? Icon(
                           suffixIcon,
                           color: iconColor,
-                          size: 16,
+                          size: theIconSize,
                         )
                       : null,
                   border: InputBorder.none,
@@ -77,8 +81,11 @@ Widget customTextField(
 //
 Widget customPasswordTextField(
   TextEditingController passwordController, {
+  double theHeight = 70,
+  double thefontSize = 16,
+  double thelableFontSize = 16,
+  double theIconSize = 20,
   String lableText = 'Password',
-  double theHeight = 50,
   IconData leadingIcon = Icons.lock,
 }) {
   return Row(
@@ -100,7 +107,7 @@ Widget customPasswordTextField(
                   obscuringCharacter: '*',
                   controller: passwordController,
                   style: TextStyle(
-                      fontSize: 13,
+                      fontSize: thefontSize,
                       color: textFieldColor,
                       fontWeight: FontWeight.bold),
                   maxLines: 1,
@@ -111,11 +118,12 @@ Widget customPasswordTextField(
                     ),
                     floatingLabelBehavior: FloatingLabelBehavior.never,
                     labelText: lableText,
-                    labelStyle: TextStyle(color: hintTextColor, fontSize: 13),
+                    labelStyle:
+                        TextStyle(color: hintTextColor, fontSize: thefontSize),
                     prefixIcon: Icon(
                       leadingIcon,
                       color: iconColor,
-                      size: 16,
+                      size: theIconSize,
                     ),
                     suffixIcon: IconButton(
                       onPressed: () {
@@ -126,7 +134,7 @@ Widget customPasswordTextField(
                             ? Icons.visibility
                             : Icons.visibility_off,
                         color: iconColor,
-                        size: 16,
+                        size: theIconSize,
                       ),
                     ),
                     border: InputBorder.none,

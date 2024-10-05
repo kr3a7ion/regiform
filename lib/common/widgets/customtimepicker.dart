@@ -46,7 +46,7 @@ void _showTimePicker(BuildContext context) async {
 
 Widget customTimePicker({
   required BuildContext context,
-  double theHeight = 55,
+  double theHeight = 70,
   String labelText = 'Select time', // Use for the hint
   TextInputType keyboardType = TextInputType.datetime,
   IconData leadingIcon = FontAwesomeIcons.clock,
@@ -75,7 +75,7 @@ Widget customTimePicker({
                   _showTimePicker(context);
                 },
                 style: TextStyle(
-                  fontSize: 13,
+                  fontSize: 16,
                   color: textFieldColor,
                   fontWeight: FontWeight.bold,
                 ),
@@ -89,19 +89,23 @@ Widget customTimePicker({
                   hintText: _timePickerController.timeController.text.isEmpty
                       ? labelText
                       : null, // Show hintText if no time is selected
-                  hintStyle: TextStyle(color: hintTextColor, fontSize: 13),
+                  hintStyle: TextStyle(
+                    color: hintTextColor,
+                    fontSize: 16,
+                    fontWeight: FontWeight.normal,
+                  ),
                   prefixIcon: usePrefix
                       ? Icon(
                           leadingIcon,
                           color: iconColor,
-                          size: 16,
+                          size: 20,
                         )
                       : null,
                   suffixIcon: useSuffix
                       ? Icon(
                           suffixIcon,
                           color: iconColor,
-                          size: 16,
+                          size: 20,
                         )
                       : null,
                   border: InputBorder.none,

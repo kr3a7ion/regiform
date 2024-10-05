@@ -5,7 +5,7 @@ import 'package:regiform/common/custom_largebutton.dart';
 Widget clickableText({
   required Function() ontapped,
   String theText = 'Reset Password',
-  double theSize = 13,
+  double theSize = 16,
 }) {
   return GestureDetector(
       onTap: ontapped,

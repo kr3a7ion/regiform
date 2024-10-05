@@ -9,16 +9,19 @@ import 'package:regiform/views/home/model/dropdown_list.dart';
 import 'package:regiform/views/home/widget/custom_dropdown.dart';
 
 final Homecontroller _homecontroller = Get.put(Homecontroller());
+const double dropdownborderHeight = 70;
+const double hintTextsize = 16;
+const double theIconSize = 30;
 
 // Gender DropDown
 Widget customDropdownGender() {
   return Obx(() => CustomDropdownButton2(
-      buttonHeight: 55,
+      buttonHeight: dropdownborderHeight,
       buttonWidth: double.infinity,
       dropdownWidth: 300,
       icon: Icon(
         Icons.arrow_drop_down_rounded,
-        size: 30,
+        size: theIconSize,
         color: custompurpleColor,
       ),
       itemPadding: EdgeInsets.symmetric(horizontal: 20),
@@ -38,17 +41,16 @@ Widget customDropdownGender() {
       }));
 }
 
-
 // Nationality Dropdown
 Widget customDropdownSelectCountry() {
   return Obx(() => CustomDropdownButton2(
-      buttonHeight: 55,
+      buttonHeight: dropdownborderHeight,
       buttonWidth: double.infinity,
       dropdownWidth: 300,
       dropdownHeight: 600,
       icon: Icon(
         Icons.arrow_drop_down_rounded,
-        size: 30,
+        size: theIconSize,
         color: custompurpleColor,
       ),
       itemPadding: EdgeInsets.symmetric(horizontal: 20),
@@ -71,13 +73,13 @@ Widget customDropdownSelectCountry() {
 // Country of Residence Dropdown
 Widget customDropdownResidency() {
   return Obx(() => CustomDropdownButton2(
-      buttonHeight: 55,
+      buttonHeight: dropdownborderHeight,
       buttonWidth: double.infinity,
       dropdownWidth: 300,
       dropdownHeight: 600,
       icon: Icon(
         Icons.arrow_drop_down_rounded,
-        size: 30,
+        size: theIconSize,
         color: custompurpleColor,
       ),
       itemPadding: EdgeInsets.symmetric(horizontal: 20),
@@ -97,16 +99,15 @@ Widget customDropdownResidency() {
       }));
 }
 
-
 // Marital Status
 Widget customDropdownMaritalStatus() {
   return Obx(() => CustomDropdownButton2(
-      buttonHeight: 55,
+      buttonHeight: dropdownborderHeight,
       buttonWidth: double.infinity,
       dropdownWidth: 300,
       icon: Icon(
         Icons.arrow_drop_down_rounded,
-        size: 30,
+        size: theIconSize,
         color: custompurpleColor,
       ),
       itemPadding: EdgeInsets.symmetric(horizontal: 20),
@@ -125,10 +126,3 @@ Widget customDropdownMaritalStatus() {
         _homecontroller.maritalStatusSelect.value = value!;
       }));
 }
-
-
-
-
-
-
-

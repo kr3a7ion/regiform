@@ -46,7 +46,7 @@ class Loginscreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           appLogo(),
-                          //const SizedBox(height: 10),
+                          const SizedBox(height: 10),
                           smallText16('L O G I N',
                               theColor: customPurpleColor2,
                               theSize: 30,

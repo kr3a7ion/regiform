@@ -5,9 +5,9 @@ Color customPurpleColor2 = const Color(0xff4D1285);
 Widget largeButton({
   required String theText,
   required Function() onTapped,
-  double thebuttonHeight = 50,
+  double thebuttonHeight = 70,
   double thewidth = double.infinity,
-  double theTextSize = 16,
+  double theTextSize = 18,
   double thebuttonRadius = 10,
   Color theTextColor = Colors.white,
 }) {
@@ -35,9 +35,9 @@ Widget largeButton({
 Widget largeOutlinedButton({
   required String theText,
   required Function() onTapped,
-  double thebuttonHeight = 50,
+  double thebuttonHeight = 70,
   double thewidth = double.infinity,
-  double theTextSize = 16,
+  double theTextSize = 18,
   double thebuttonRadius = 10,
   Color theTextColor = const Color(0xff4D1285),
 }) {

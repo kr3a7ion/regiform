@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-final String logoPath = 'assets/logo/applogo.png';
+final String logoPath = 'assets/logo/logo.png';
 final String heroTaglogo = 'appLogo';
 
 Widget appLogo({

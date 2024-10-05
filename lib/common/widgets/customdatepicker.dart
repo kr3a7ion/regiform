@@ -55,7 +55,7 @@ void _showDatePicker(BuildContext context) {
 
 Widget customDataPicter({
   required BuildContext context,
-  double theHeight = 55,
+  double theHeight = 70,
   String labelText = 'Date of birth',
   TextInputType keyboardType = TextInputType.datetime,
   IconData leadingIcon = FontAwesomeIcons.calendarDay,
@@ -83,7 +83,7 @@ Widget customDataPicter({
                   _showDatePicker(context);
                 },
                 style: TextStyle(
-                    fontSize: 13,
+                    fontSize: 16,
                     color: textFieldColor,
                     fontWeight: FontWeight.bold),
                 maxLines: 1,
@@ -97,19 +97,22 @@ Widget customDataPicter({
                       ? labelText
                       : null,
                   //labelText: labelText,
-                  hintStyle: TextStyle(color: hintTextColor, fontSize: 13),
+                  hintStyle: TextStyle(
+                      color: hintTextColor,
+                      fontSize: 16,
+                      fontWeight: FontWeight.normal),
                   prefixIcon: usePrefix
                       ? Icon(
                           leadingIcon,
                           color: iconColor,
-                          size: 16,
+                          size: 20,
                         )
                       : null,
                   suffixIcon: useSuffix
                       ? Icon(
                           suffixIcon,
                           color: iconColor,
-                          size: 16,
+                          size: 20,
                         )
                       : null,
                   border: InputBorder.none,
