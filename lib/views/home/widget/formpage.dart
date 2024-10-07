@@ -7,9 +7,18 @@ import 'package:regiform/common/widgets/customdatepicker.dart';
 import 'package:regiform/common/widgets/customtimepicker.dart';
 import 'package:regiform/views/home/controllers/homecontroller.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:regiform/views/home/controllers/signaturecontroller.dart';
 import 'package:regiform/views/home/widget/homewidgets.dart';
+import 'package:regiform/views/home/widget/signature_capture.dart';
 
 final Homecontroller homecontroller = Get.put(Homecontroller());
+final MySignatureControlles _mySignatureControlles =
+    Get.put(MySignatureControlles());
+final DatePickerControlleler _datePickerControlleler =
+    Get.put(DatePickerControlleler());
+final TimePickerController _timePickerController =
+    Get.put(TimePickerController());
+final Homecontroller _homecontroller = Get.put(Homecontroller());
 
 const double textFieldHieght = 70;
 const double textfieldFontSize = 16;
@@ -63,9 +72,9 @@ Widget customregformPage1(
           children: [
             Expanded(
               child: customTextField(
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.name,
                 theHeight: textFieldHieght,
-                homecontroller.nameTextController,
+                homecontroller.firstNameController,
                 lableText: 'First name',
                 leadingIcon: Icons.person_2,
               ),
@@ -75,9 +84,9 @@ Widget customregformPage1(
             ),
             Expanded(
               child: customTextField(
-                keyboardType: TextInputType.text,
+                keyboardType: TextInputType.name,
                 theHeight: textFieldHieght,
-                homecontroller.nameTextController,
+                homecontroller.otherNamesController,
                 lableText: 'Other names',
                 leadingIcon: Icons.person_2,
               ),
@@ -88,9 +97,9 @@ Widget customregformPage1(
           height: 15,
         ),
         customTextField(
-          keyboardType: TextInputType.text,
+          keyboardType: TextInputType.name,
           theHeight: textFieldHieght,
-          homecontroller.nameTextController,
+          homecontroller.lastNameController,
           lableText: 'Last name',
           leadingIcon: Icons.person_2,
         ),
@@ -100,7 +109,7 @@ Widget customregformPage1(
         customTextField(
           keyboardType: TextInputType.emailAddress,
           theHeight: textFieldHieght,
-          homecontroller.emailTextController,
+          homecontroller.emailController,
           lableText: 'Email',
           leadingIcon: Icons.email,
         ),
@@ -108,14 +117,22 @@ Widget customregformPage1(
         customTextField(
           keyboardType: TextInputType.phone,
           theHeight: textFieldHieght,
-          homecontroller.nameTextController,
+          homecontroller.mobileNoController,
           lableText: 'Mobile number',
           leadingIcon: Icons.phone_android,
         ),
         const SizedBox(height: 15),
         Row(
           children: [
-            Expanded(child: customDataPicter(context: context)),
+            Expanded(
+                child: customDataPicter(
+              context: context,
+              onpressed: () {
+                showMyDatePicker(
+                    context, _datePickerControlleler.selectedDOBDate);
+              },
+              theController: _homecontroller.dateOfBirthController,
+            )),
             const SizedBox(width: 15),
             Expanded(child: customDropdownSelectCountry()),
           ],
@@ -157,7 +174,7 @@ Widget customregformPage01(
         customTextField(
           keyboardType: TextInputType.text,
           theHeight: textFieldHieght,
-          homecontroller.addressTextController,
+          homecontroller.passportIDController,
           lableText: 'Passport ID',
           leadingIcon: FontAwesomeIcons.idCardClip,
         ),
@@ -165,7 +182,7 @@ Widget customregformPage01(
         customTextField(
           keyboardType: TextInputType.text,
           theHeight: textFieldHieght,
-          homecontroller.addressTextController,
+          homecontroller.visaValidityController,
           lableText: 'Visa Validity',
           leadingIcon: FontAwesomeIcons.passport,
         ),
@@ -198,7 +215,7 @@ Widget customregformPage02(
         customTextField(
           keyboardType: TextInputType.streetAddress,
           theHeight: textFieldHieght,
-          homecontroller.addressTextController,
+          homecontroller.addressController,
           lableText: 'Address',
           leadingIcon: FontAwesomeIcons.city,
         ),
@@ -206,7 +223,7 @@ Widget customregformPage02(
         customTextField(
           keyboardType: TextInputType.streetAddress,
           theHeight: textFieldHieght,
-          homecontroller.addressTextController,
+          homecontroller.companyController,
           lableText: 'Company',
           leadingIcon: FontAwesomeIcons.buildingColumns,
         ),
@@ -215,9 +232,8 @@ Widget customregformPage02(
   );
 }
 
-///
-///This widget Page2 Covers the Travel detail widgets
-///
+//This widget Page2 Covers the Travel detail widgets
+//
 Widget customregformPage2(
   BuildContext context,
   PageController theController,
@@ -242,12 +258,22 @@ Widget customregformPage2(
             Expanded(
               child: customDataPicter(
                   context: context,
+                  onpressed: () {
+                    showMyDatePicker(
+                        context, _datePickerControlleler.selectedArrivalDate);
+                  },
+                  theController: _homecontroller.arrivalDateController,
                   labelText: 'Arrival Date',
                   leadingIcon: FontAwesomeIcons.calendarDay),
             ),
             const SizedBox(width: 15),
             Expanded(
               child: customTimePicker(
+                  onpressed: () {
+                    showMyTimePicker(context,
+                        timeData: _timePickerController.arrivalSelectedTime);
+                  },
+                  theController: _homecontroller.arrivalTimeController,
                   context: context,
                   labelText: 'Arrival Time',
                   leadingIcon: FontAwesomeIcons.clock),
@@ -261,12 +287,22 @@ Widget customregformPage2(
             Expanded(
               child: customDataPicter(
                   context: context,
+                  onpressed: () {
+                    showMyDatePicker(
+                        context, _datePickerControlleler.selectedDepartureDate);
+                  },
+                  theController: _homecontroller.departureDateController,
                   labelText: 'Departure Date',
                   leadingIcon: FontAwesomeIcons.calendarCheck),
             ),
             const SizedBox(width: 15),
             Expanded(
               child: customTimePicker(
+                onpressed: () {
+                    showMyTimePicker(context,
+                        timeData: _timePickerController.departureSelectedTime);
+                  },
+                  theController: _homecontroller.departureTimeController,
                   context: context,
                   labelText: 'Departure Time',
                   leadingIcon: FontAwesomeIcons.clock),
@@ -278,7 +314,7 @@ Widget customregformPage2(
         customTextField(
           keyboardType: TextInputType.streetAddress,
           theHeight: textFieldHieght,
-          homecontroller.addressTextController,
+          homecontroller.comingFromController,
           lableText: 'Coming from where?',
           leadingIcon: FontAwesomeIcons.map,
         ),
@@ -286,7 +322,7 @@ Widget customregformPage2(
         customTextField(
           keyboardType: TextInputType.streetAddress,
           theHeight: textFieldHieght,
-          homecontroller.addressTextController,
+          homecontroller.goingToController,
           lableText: 'Going to where?',
           leadingIcon: FontAwesomeIcons.map,
         ),
@@ -297,7 +333,7 @@ Widget customregformPage2(
 }
 
 //
-
+// This widget covers accomodation details
 Widget customregformPage3(
   BuildContext context,
   PageController theController,
@@ -316,11 +352,20 @@ Widget customregformPage3(
             theColor: customPurpleColor2,
             theFontWeight: FontWeight.bold),
         const SizedBox(height: 20),
-        customTextField(
-          theHeight: textFieldHieght,
-          homecontroller.nameTextController,
-          lableText: 'Room Type',
-          leadingIcon: Icons.bed,
+        Row(
+          children: [
+            Expanded(
+              child: customTextField(
+                keyboardType: TextInputType.name,
+                theHeight: textFieldHieght,
+                homecontroller.roomTypeController,
+                lableText: 'Room Type',
+                leadingIcon: Icons.bed,
+              ),
+            ),
+            SizedBox(width: 15),
+            Expanded(child: customDropdownNumberofGuest())
+          ],
         ),
         const SizedBox(
           height: 15,
@@ -329,8 +374,9 @@ Widget customregformPage3(
           children: [
             Expanded(
               child: customTextField(
+                keyboardType: TextInputType.number,
                 theHeight: textFieldHieght,
-                homecontroller.emailTextController,
+                homecontroller.roomRateController,
                 lableText: 'Room Rate',
                 leadingIcon: Icons.bed,
               ),
@@ -338,33 +384,18 @@ Widget customregformPage3(
             const SizedBox(
               width: 15,
             ),
-            Expanded(
-              child: customTextField(
-                theHeight: textFieldHieght,
-                homecontroller.addressTextController,
-                lableText: 'No. of Rooms',
-                leadingIcon: Icons.bed,
-              ),
-            ),
+            Expanded(child: customDropdownNumberofRooms()),
           ],
         ),
         const SizedBox(
           height: 15,
         ),
         customTextField(
+          keyboardType: TextInputType.name,
           theHeight: textFieldHieght,
-          homecontroller.emailTextController,
+          homecontroller.apartmentController,
           lableText: 'Apartment',
           leadingIcon: Icons.door_front_door,
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        customTextField(
-          theHeight: textFieldHieght,
-          homecontroller.emailTextController,
-          lableText: 'No. of Guest',
-          leadingIcon: Icons.family_restroom_sharp,
         ),
         const SizedBox(
           height: 15,
@@ -375,6 +406,7 @@ Widget customregformPage3(
 }
 
 //
+// This widget covers payment details
 Widget customregformPage4(
   BuildContext context,
   PageController theController,
@@ -395,19 +427,14 @@ Widget customregformPage4(
         const SizedBox(height: 20),
         customTextField(
           theHeight: textFieldHieght,
-          homecontroller.nameTextController,
+          homecontroller.depositedController,
           lableText: 'Deposited',
           leadingIcon: Icons.person_2,
         ),
         const SizedBox(
           height: 15,
         ),
-        customTextField(
-          theHeight: textFieldHieght,
-          homecontroller.emailTextController,
-          lableText: 'Payment Method',
-          leadingIcon: Icons.email,
-        ),
+        customDropdownPaymentMethod(),
         const SizedBox(
           height: 15,
         ),
@@ -417,7 +444,7 @@ Widget customregformPage4(
 }
 
 //
-
+// This widget covers Signature capturing
 Widget customregformPage5(
   BuildContext context,
   PageController theController,
@@ -437,18 +464,59 @@ Widget customregformPage5(
             theColor: customPurpleColor2,
             theFontWeight: FontWeight.bold),
         const SizedBox(height: 20),
-        smallText16(
-          'Guest Signature',
-          theColor: custompurpleColor,
-          theSize: 16,
-        ),
-        const SizedBox(
-          height: 15,
-        ),
-        smallText16(
-          'Receptionist Signature',
-          theColor: custompurpleColor,
-          theSize: 16,
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            smallText16(
+              'Guest Signature: Sign within the white box below!!',
+              theColor: custompurpleColor,
+              theSize: 18,
+            ),
+            SizedBox(
+              height: 15,
+            ),
+            Row(
+              children: [
+                captureSignature(),
+                SizedBox(
+                  width: 15,
+                ),
+                Obx(() => _mySignatureControlles.isSignatureEmpty.value
+                    ? SizedBox.shrink()
+                    : GestureDetector(
+                        onTap: () {
+                          _mySignatureControlles.clear();
+                        },
+                        child: Container(
+                          height: 60,
+                          width: 120,
+                          decoration: BoxDecoration(
+                              border: Border.all(
+                            width: 2,
+                            color: custompurpleColor,
+                          )),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.clear,
+                                color: Colors.red,
+                              ),
+                              FittedBox(
+                                child: smallText16(
+                                  'Clear',
+                                  theColor: custompurpleColor,
+                                  theSize: 16,
+                                  theFontWeight: FontWeight.w900,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ))
+              ],
+            ),
+          ],
         ),
         const SizedBox(
           height: 15,

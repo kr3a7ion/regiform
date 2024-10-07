@@ -4,8 +4,8 @@ final String logoPath = 'assets/logo/logo.png';
 final String heroTaglogo = 'appLogo';
 
 Widget appLogo({
-  double logoHeight = 100,
-  double logoWidth = 100,
+  double logoHeight = 80,
+  double logoWidth = 80,
 }) {
   return Hero(
     tag: heroTaglogo,

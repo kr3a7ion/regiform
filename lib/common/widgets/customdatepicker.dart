@@ -4,33 +4,47 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:regiform/common/custom_largebutton.dart';
+import 'package:regiform/views/home/controllers/homecontroller.dart';
 
 Color borderColor = custompurpleColor;
 Color iconColor = customPurpleColor2;
 Color hintTextColor = Colors.grey.shade400;
 Color textFieldColor = Colors.black;
-final DatePickerControllelr _datePickerControllelr =
-    Get.put(DatePickerControllelr());
 
+final Homecontroller _homecontroller = Get.put(Homecontroller());
 //
 
 final DateFormat _dateFormat = DateFormat('dd-MM-yyyy');
 
-class DatePickerControllelr extends GetxController {
-  Rxn<DateTime> selectedDate = Rxn<DateTime>();
+class DatePickerControlleler extends GetxController {
+  Rxn<DateTime> selectedDOBDate = Rxn<DateTime>();
+  Rxn<DateTime> selectedArrivalDate = Rxn<DateTime>();
+  Rxn<DateTime> selectedDepartureDate = Rxn<DateTime>();
   TextEditingController dateController = TextEditingController();
 
-  DatePickerControllelr() {
-    selectedDate.listen((date) {
+  DatePickerControlleler() {
+    selectedDOBDate.listen((date) {
       if (date != null) {
-        dateController.text = _dateFormat.format(date);
+        _homecontroller.dateOfBirthController.text = _dateFormat.format(date);
+      }
+    });
+
+    selectedArrivalDate.listen((data) {
+      if (data != null) {
+        _homecontroller.arrivalDateController.text = _dateFormat.format(data);
+      }
+    });
+
+    selectedDepartureDate.listen((data) {
+      if (data != null) {
+        _homecontroller.departureDateController.text = _dateFormat.format(data);
       }
     });
   }
 }
 
 // Function to open the calendar modal
-void _showDatePicker(BuildContext context) {
+void showMyDatePicker(BuildContext context, Rxn<DateTime> dateData,) {
   showDialog(
     context: context,
     builder: (BuildContext context) {
@@ -39,11 +53,10 @@ void _showDatePicker(BuildContext context) {
           height: 500,
           width: 500,
           onDayPressed: (DateTime date, List events) {
-            _datePickerControllelr.selectedDate.value = date;
-
+            dateData.value = date;
             Navigator.pop(context); // Close the dialog after selecting a date
           },
-          selectedDateTime: _datePickerControllelr.selectedDate.value,
+          selectedDateTime: dateData.value,
           todayButtonColor: customPurpleColor2,
           selectedDayBorderColor: custompurpleColor,
           selectedDayButtonColor: custompurpleColor,
@@ -62,6 +75,8 @@ Widget customDataPicter({
   IconData suffixIcon = Icons.calendar_today,
   bool usePrefix = true,
   bool useSuffix = false,
+  required Function() onpressed,
+  required TextEditingController theController,
 }) {
   return Row(
     children: [
@@ -78,10 +93,8 @@ Widget customDataPicter({
               child: TextFormField(
                 readOnly: true,
                 keyboardType: keyboardType,
-                controller: _datePickerControllelr.dateController,
-                onTap: () {
-                  _showDatePicker(context);
-                },
+                controller: theController,
+                onTap: onpressed,
                 style: TextStyle(
                     fontSize: 16,
                     color: textFieldColor,
@@ -93,10 +106,7 @@ Widget customDataPicter({
                     vertical: 15,
                   ),
                   floatingLabelBehavior: FloatingLabelBehavior.never,
-                  hintText: _datePickerControllelr.dateController.text.isEmpty
-                      ? labelText
-                      : null,
-                  //labelText: labelText,
+                  hintText: theController.text.isEmpty ? labelText : null,
                   hintStyle: TextStyle(
                       color: hintTextColor,
                       fontSize: 16,

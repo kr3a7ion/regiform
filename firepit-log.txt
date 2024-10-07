@@ -10,4 +10,4 @@ Checking for npm/bin/npm-cli install at /Users/kreattech/.cache/firebase/tools/l
 Checking for npm/bin/npm-cli install at /Users/kreattech/.cache/firebase/tools/node_modules/npm/bin/npm-cli
 Checking for npm/bin/npm-cli install at /snapshot/firepit/node_modules/npm/bin/npm-cli
 Found npm/bin/npm-cli install.
-ShellJSInternalError: ENOENT: no such file or directory, stat '/Users/kreattech/.cache/firebase/runtime/shell.bat'
+ShellJSInternalError: ENOENT: no such file or directory, chmod '/Users/kreattech/.cache/firebase/runtime/npm'

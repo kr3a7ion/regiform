@@ -21,12 +21,14 @@ Widget largeButton({
               borderRadius: BorderRadius.circular(thebuttonRadius),
             ))),
         onPressed: onTapped,
-        child: Text(
-          theText,
-          style: TextStyle(
-            color: theTextColor,
-            fontSize: theTextSize,
-            fontWeight: FontWeight.bold,
+        child: FittedBox(
+          child: Text(
+            theText,
+            style: TextStyle(
+              color: theTextColor,
+              fontSize: theTextSize,
+              fontWeight: FontWeight.bold,
+            ),
           ),
         )),
   );

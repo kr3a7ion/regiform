@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-//import 'package:get/get_connect/http/src/utils/utils.dart';
-//import 'package:get/get_connect/sockets/src/socket_notifier.dart';
 import 'package:regiform/common/custom_largebutton.dart';
 import 'package:regiform/common/custom_textfield.dart';
 import 'package:regiform/views/home/controllers/homecontroller.dart';
@@ -124,5 +122,92 @@ Widget customDropdownMaritalStatus() {
       dropdownItems: maritalStatusSelect,
       onChanged: (value) {
         _homecontroller.maritalStatusSelect.value = value!;
+      }));
+}
+
+
+// Numbers of Rooms
+Widget customDropdownNumberofRooms() {
+  return Obx(() => CustomDropdownButton2(
+      buttonHeight: dropdownborderHeight,
+      buttonWidth: double.infinity,
+      dropdownWidth: 300,
+      icon: Icon(
+        Icons.arrow_drop_down_rounded,
+        size: theIconSize,
+        color: custompurpleColor,
+      ),
+      itemPadding: EdgeInsets.symmetric(horizontal: 20),
+      buttonDecoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(width: 2, color: borderColor),
+          color: Colors.white),
+      dropdownDecoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(width: 2, color: borderColor),
+          color: Colors.white),
+      hint: 'Number of rooms',
+      value: _homecontroller.numberRooms.value,
+      dropdownItems: numberOfRoom,
+      onChanged: (value) {
+        _homecontroller.numberRooms.value = value!;
+      }));
+}
+
+
+// Numbers of Guest
+Widget customDropdownNumberofGuest() {
+  return Obx(() => CustomDropdownButton2(
+      buttonHeight: dropdownborderHeight,
+      buttonWidth: double.infinity,
+      dropdownWidth: 300,
+      icon: Icon(
+        Icons.arrow_drop_down_rounded,
+        size: theIconSize,
+        color: custompurpleColor,
+      ),
+      itemPadding: EdgeInsets.symmetric(horizontal: 20),
+      buttonDecoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(width: 2, color: borderColor),
+          color: Colors.white),
+      dropdownDecoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(width: 2, color: borderColor),
+          color: Colors.white),
+      hint: 'Number of Guest',
+      value: _homecontroller.numberOfGuest.value,
+      dropdownItems: numberOfGuest,
+      onChanged: (value) {
+        _homecontroller.numberOfGuest.value = value!;
+      }));
+}
+
+
+// Payment Method
+Widget customDropdownPaymentMethod() {
+  return Obx(() => CustomDropdownButton2(
+      buttonHeight: dropdownborderHeight,
+      buttonWidth: double.infinity,
+      dropdownWidth: 300,
+      icon: Icon(
+        Icons.arrow_drop_down_rounded,
+        size: theIconSize,
+        color: custompurpleColor,
+      ),
+      itemPadding: EdgeInsets.symmetric(horizontal: 20),
+      buttonDecoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(width: 2, color: borderColor),
+          color: Colors.white),
+      dropdownDecoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          border: Border.all(width: 2, color: borderColor),
+          color: Colors.white),
+      hint: 'Payment Method',
+      value: _homecontroller.paymentMethod.value,
+      dropdownItems: listOfPaymentOptions,
+      onChanged: (value) {
+        _homecontroller.paymentMethod.value = value!;
       }));
 }

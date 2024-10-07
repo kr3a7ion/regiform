@@ -208,3 +208,12 @@ List<String> countries = [
   "Zambia",
   "Zimbabwe"
 ];
+
+// Numbers of rooms
+List<String> numberOfRoom = ['1', '2', '3'];
+
+// Number of guest
+List<String> numberOfGuest = ['1', '2', '3'];
+
+// Payment of list
+List<String> listOfPaymentOptions = ['MasterCard', 'Transfer', 'Cash', 'POS'];

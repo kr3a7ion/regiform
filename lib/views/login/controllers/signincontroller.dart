@@ -126,6 +126,7 @@ class SignInController extends GetxController {
   }
 
   Future<void> getCurrentUser() async {
+    print('RUNING GET USER');
     if (userisLoggedIn.value) {
       if (_userData != null) {
         //DisplayUserData displayUserData = DisplayUserData.fromMap(_userData);
@@ -151,8 +152,7 @@ class SignInController extends GetxController {
 
       if (user != null) {
         isLoading.value = true;
-
-        var userData = await _fetchUserDataModel.fetchUserData();
+        var userData = await _fetchUserDataModel.fetchUserData(user);
         _userData = userData;
 
         if (userData == null) {
@@ -203,13 +203,14 @@ class SignInController extends GetxController {
       }
 
       // Check if the current user and data are valid before navigating
+      print('Got HERE');
       await currentUser(); // Ensure user data is fetched correctly
       if (userisLoggedIn.value) {
         // Clear the fields only when the user is successfully logged in
         signInEmailController.clear();
         signInPasswordController.clear();
         // Only navigate if logged in is true
-        Get.to(() => navigateToScreen());
+        Get.offAll(() => navigateToScreen());
       }
     } on TimeoutException {
       // Handle login timeout

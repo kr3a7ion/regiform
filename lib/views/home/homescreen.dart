@@ -6,6 +6,7 @@ import 'package:regiform/common/clickable_text.dart';
 import 'package:regiform/common/custom_largebutton.dart';
 import 'package:regiform/common/widgets/applogo.dart';
 import 'package:regiform/common/widgets/reusable_popscope.dart';
+import 'package:regiform/views/home/controllers/homecontroller.dart';
 import 'package:regiform/views/home/controllers/mypagecontroller.dart';
 import 'package:regiform/views/home/widget/formpage.dart';
 import 'package:regiform/views/login/controllers/signincontroller.dart';
@@ -17,6 +18,9 @@ class HomeScreen extends StatelessWidget {
 
   final SignInController _signInController = Get.put(SignInController());
   final Mypagecontroller _mypagecontroller = Get.put(Mypagecontroller());
+  final Homecontroller _homecontroller = Get.put(Homecontroller());
+
+  final double sidepageIndicatorfontsize = 14;
 
   @override
   Widget build(BuildContext context) {
@@ -56,6 +60,7 @@ class HomeScreen extends StatelessWidget {
             PageView(
               clipBehavior: Clip.antiAlias,
               onPageChanged: (value) {
+                _homecontroller.completionStatus(value);
                 _mypagecontroller.changeIndex(value);
               },
               controller: _mypagecontroller.pageController,
@@ -148,20 +153,111 @@ class HomeScreen extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text('Personal Details', style: TextStyle(
-                          ),),
+                          FittedBox(
+                            child: smallText16('Personal Details',
+                                theSize:
+                                    _homecontroller.personalDetailsDone.value
+                                        ? 16
+                                        : sidepageIndicatorfontsize,
+                                theColor:
+                                    _homecontroller.personalDetailsDone.value
+                                        ? customPurpleColor2
+                                        : Colors.black,
+                                theFontWeight:
+                                    _homecontroller.personalDetailsDone.value
+                                        ? FontWeight.bold
+                                        : FontWeight.normal),
+                          ),
                           SizedBox(height: 10),
-                          Text('Identification Details'),
+                          FittedBox(
+                            child: smallText16('Identification Details',
+                                theSize: _homecontroller
+                                        .identificationDetailsDone.value
+                                    ? 16
+                                    : sidepageIndicatorfontsize,
+                                theColor: _homecontroller
+                                        .identificationDetailsDone.value
+                                    ? customPurpleColor2
+                                    : Colors.black,
+                                theFontWeight: _homecontroller
+                                        .identificationDetailsDone.value
+                                    ? FontWeight.bold
+                                    : FontWeight.normal),
+                          ),
                           SizedBox(height: 10),
-                          Text('Address Details'),
+                          FittedBox(
+                            child: smallText16('Address Details',
+                                theSize: _homecontroller.addressDetailsDone.value
+                                    ? 16
+                                    : sidepageIndicatorfontsize,
+                                theColor: _homecontroller.addressDetailsDone.value
+                                    ? customPurpleColor2
+                                    : Colors.black,
+                                theFontWeight:
+                                    _homecontroller.addressDetailsDone.value
+                                        ? FontWeight.bold
+                                        : FontWeight.normal),
+                          ),
                           SizedBox(height: 10),
-                          Text('Travel Details'),
+                          FittedBox(
+                            child: smallText16('Travel Details',
+                                theSize: _homecontroller.travelDetailsDone.value
+                                    ? 16
+                                    : sidepageIndicatorfontsize,
+                                theColor: _homecontroller.travelDetailsDone.value
+                                    ? customPurpleColor2
+                                    : Colors.black,
+                                theFontWeight:
+                                    _homecontroller.travelDetailsDone.value
+                                        ? FontWeight.bold
+                                        : FontWeight.normal),
+                          ),
                           SizedBox(height: 10),
-                          Text('Accomodation Details'),
+                          FittedBox(
+                            child: smallText16('Accomodation Details',
+                                theSize:
+                                    _homecontroller.accomodationDetailsDone.value
+                                        ? 16
+                                        : sidepageIndicatorfontsize,
+                                theColor:
+                                    _homecontroller.accomodationDetailsDone.value
+                                        ? customPurpleColor2
+                                        : Colors.black,
+                                theFontWeight:
+                                    _homecontroller.accomodationDetailsDone.value
+                                        ? FontWeight.bold
+                                        : FontWeight.normal),
+                          ),
                           SizedBox(height: 10),
-                          Text('Payment Details'),
+                          FittedBox(
+                            child: smallText16('Payment Details',
+                                theSize: _homecontroller.paymentDetailsDone.value
+                                    ? 16
+                                    : sidepageIndicatorfontsize,
+                                theColor: _homecontroller.paymentDetailsDone.value
+                                    ? customPurpleColor2
+                                    : Colors.black,
+                                theFontWeight:
+                                    _homecontroller.paymentDetailsDone.value
+                                        ? FontWeight.bold
+                                        : FontWeight.normal),
+                          ),
                           SizedBox(height: 10),
-                          Text('Signature Details'),
+                          FittedBox(
+                            child: smallText16('Signature Details',
+                                theSize:
+                                    _homecontroller.signatureDetailsDone.value
+                                        ? 16
+                                        : sidepageIndicatorfontsize,
+                                theColor:
+                                    _homecontroller.signatureDetailsDone.value
+                                        ? customPurpleColor2
+                                        : Colors.black,
+                                theFontWeight:
+                                    _homecontroller.signatureDetailsDone.value
+                                        ? FontWeight.bold
+                                        : FontWeight.normal),
+                          ),
                         ],
                       ),
                     ))
@@ -206,11 +302,63 @@ class HomeScreen extends StatelessWidget {
                                 size: 80,
                               ),
                               smallText16(
-                                'KREATION',
-                                // _signInController.currentUserName.value.toUpperCase(),
+                                // 'KREATION',
+                                _signInController.currentUserName.value
+                                    .toUpperCase(),
                                 theColor: custompurpleColor,
                                 theSize: 18,
                                 theFontWeight: FontWeight.w900,
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Obx(
+                                () => _mypagecontroller.theIndex.value >= 1
+                                    ? largeButton(
+                                        thebuttonHeight: 50,
+                                        thewidth: 100,
+                                        theText:
+                                            _mypagecontroller.theIndex.value ==
+                                                    7
+                                                ? 'Preview'
+                                                : 'Next',
+                                        theTextSize: 16,
+                                        onTapped: () {
+                                          _mypagecontroller.theIndex.value ==
+                                                    7 ? _homecontroller.onFormSaved() :
+                                          _homecontroller.completionStatus(
+                                              _mypagecontroller.theIndex.value);
+                                          _mypagecontroller.pageController
+                                              .nextPage(
+                                                  duration:
+                                                      Duration(seconds: 3),
+                                                  curve: Curves
+                                                      .fastLinearToSlowEaseIn);
+                                          //
+                                          // I still need to add what happends when done here
+                                        })
+                                    : SizedBox.shrink(),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Obx(
+                                () => _mypagecontroller.theIndex.value >= 2
+                                    ? largeButton(
+                                        thebuttonHeight: 50,
+                                        thewidth: 100,
+                                        theTextSize: 16,
+                                        theText: 'Previous',
+                                        onTapped: () {
+                                          _mypagecontroller.pageController
+                                              .previousPage(
+                                                  duration:
+                                                      Duration(seconds: 3),
+                                                  curve: Curves
+                                                      .fastLinearToSlowEaseIn);
+                                        })
+                                    : SizedBox.shrink(),
                               ),
                             ],
                           ),
