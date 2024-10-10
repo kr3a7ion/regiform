@@ -26,6 +26,7 @@ class DatePickerControlleler extends GetxController {
     selectedDOBDate.listen((date) {
       if (date != null) {
         _homecontroller.dateOfBirthController.text = _dateFormat.format(date);
+
       }
     });
 
@@ -44,7 +45,10 @@ class DatePickerControlleler extends GetxController {
 }
 
 // Function to open the calendar modal
-void showMyDatePicker(BuildContext context, Rxn<DateTime> dateData,) {
+void showMyDatePicker(
+  BuildContext context,
+  Rxn<DateTime> dateData,
+) {
   showDialog(
     context: context,
     builder: (BuildContext context) {

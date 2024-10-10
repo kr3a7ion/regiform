@@ -28,8 +28,8 @@ class FormValidator {
     return null;
   }
 
-  static String? validateDOB(DateTime value) {
-    if (value.isAtSameMomentAs(DateTime.now())) {
+  static String? validateDOB(DateTime? value) {
+    if (value!.isAtSameMomentAs(DateTime.now())) {
       return 'Invalid DOB seleted';
     }
     if (value.year < 2008) {
@@ -68,7 +68,7 @@ class FormValidator {
     return null;
   }
 
-  static String? validatePasspordID(String value) {
+  static String? validatePassportID(String value) {
     if (value.isEmpty) {
       return 'This field is required!';
     }

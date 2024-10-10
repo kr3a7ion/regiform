@@ -187,12 +187,14 @@ class HomeScreen extends StatelessWidget {
                           SizedBox(height: 10),
                           FittedBox(
                             child: smallText16('Address Details',
-                                theSize: _homecontroller.addressDetailsDone.value
-                                    ? 16
-                                    : sidepageIndicatorfontsize,
-                                theColor: _homecontroller.addressDetailsDone.value
-                                    ? customPurpleColor2
-                                    : Colors.black,
+                                theSize:
+                                    _homecontroller.addressDetailsDone.value
+                                        ? 16
+                                        : sidepageIndicatorfontsize,
+                                theColor:
+                                    _homecontroller.addressDetailsDone.value
+                                        ? customPurpleColor2
+                                        : Colors.black,
                                 theFontWeight:
                                     _homecontroller.addressDetailsDone.value
                                         ? FontWeight.bold
@@ -204,9 +206,10 @@ class HomeScreen extends StatelessWidget {
                                 theSize: _homecontroller.travelDetailsDone.value
                                     ? 16
                                     : sidepageIndicatorfontsize,
-                                theColor: _homecontroller.travelDetailsDone.value
-                                    ? customPurpleColor2
-                                    : Colors.black,
+                                theColor:
+                                    _homecontroller.travelDetailsDone.value
+                                        ? customPurpleColor2
+                                        : Colors.black,
                                 theFontWeight:
                                     _homecontroller.travelDetailsDone.value
                                         ? FontWeight.bold
@@ -215,28 +218,30 @@ class HomeScreen extends StatelessWidget {
                           SizedBox(height: 10),
                           FittedBox(
                             child: smallText16('Accomodation Details',
-                                theSize:
-                                    _homecontroller.accomodationDetailsDone.value
-                                        ? 16
-                                        : sidepageIndicatorfontsize,
-                                theColor:
-                                    _homecontroller.accomodationDetailsDone.value
-                                        ? customPurpleColor2
-                                        : Colors.black,
-                                theFontWeight:
-                                    _homecontroller.accomodationDetailsDone.value
-                                        ? FontWeight.bold
-                                        : FontWeight.normal),
+                                theSize: _homecontroller
+                                        .accomodationDetailsDone.value
+                                    ? 16
+                                    : sidepageIndicatorfontsize,
+                                theColor: _homecontroller
+                                        .accomodationDetailsDone.value
+                                    ? customPurpleColor2
+                                    : Colors.black,
+                                theFontWeight: _homecontroller
+                                        .accomodationDetailsDone.value
+                                    ? FontWeight.bold
+                                    : FontWeight.normal),
                           ),
                           SizedBox(height: 10),
                           FittedBox(
                             child: smallText16('Payment Details',
-                                theSize: _homecontroller.paymentDetailsDone.value
-                                    ? 16
-                                    : sidepageIndicatorfontsize,
-                                theColor: _homecontroller.paymentDetailsDone.value
-                                    ? customPurpleColor2
-                                    : Colors.black,
+                                theSize:
+                                    _homecontroller.paymentDetailsDone.value
+                                        ? 16
+                                        : sidepageIndicatorfontsize,
+                                theColor:
+                                    _homecontroller.paymentDetailsDone.value
+                                        ? customPurpleColor2
+                                        : Colors.black,
                                 theFontWeight:
                                     _homecontroller.paymentDetailsDone.value
                                         ? FontWeight.bold
@@ -325,16 +330,19 @@ class HomeScreen extends StatelessWidget {
                                                 : 'Next',
                                         theTextSize: 16,
                                         onTapped: () {
-                                          _mypagecontroller.theIndex.value ==
-                                                    7 ? _homecontroller.onFormSaved() :
-                                          _homecontroller.completionStatus(
-                                              _mypagecontroller.theIndex.value);
+                                          if (_mypagecontroller
+                                                  .theIndex.value ==
+                                              7) {
+                                            _homecontroller.onFormSaved();
+                                          }
                                           _mypagecontroller.pageController
                                               .nextPage(
                                                   duration:
                                                       Duration(seconds: 3),
                                                   curve: Curves
                                                       .fastLinearToSlowEaseIn);
+                                          _homecontroller.completionStatus(
+                                              _mypagecontroller.theIndex.value);
                                           //
                                           // I still need to add what happends when done here
                                         })

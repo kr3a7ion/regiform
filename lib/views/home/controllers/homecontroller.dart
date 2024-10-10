@@ -1,10 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:regiform/common/controllers/authcontroller.dart';
+import 'package:regiform/common/widgets/customdatepicker.dart';
 import 'package:regiform/common/widgets/showsnackbar.dart';
 import 'package:regiform/views/home/controllers/validator_class.dart';
 import 'package:regiform/views/home/model/formdb_model.dart';
+import 'package:regiform/views/login/controllers/signincontroller.dart';
+
+final SignInController _signInController = Get.put(SignInController());
+final DatePickerControlleler _datePickerControlleler =
+    Get.put(DatePickerControlleler());
 
 class Homecontroller extends GetxController {
   // Personal details
@@ -36,18 +41,20 @@ class Homecontroller extends GetxController {
   final TextEditingController noOfGuestsController = TextEditingController();
   final TextEditingController depositedController = TextEditingController();
 
-  final Authcontroller _auth = Get.put(Authcontroller());
+  // final Authcontroller _auth = Get.put(Authcontroller());
   final GuestFormData _formData = Get.put(GuestFormData());
 
   var isLoading = false.obs;
   var errorMessage = ''.obs;
-  var uID = ''.obs;
+
+  // dropdown values
   var genderSelect = RxnString();
   var countrySelect = RxnString();
   var maritalStatusSelect = RxnString();
   var numberRooms = RxnString();
   var numberOfGuest = RxnString();
   var paymentMethod = RxnString();
+  
 
   //
   var personalDetailsDone = true.obs;
@@ -58,40 +65,33 @@ class Homecontroller extends GetxController {
   var paymentDetailsDone = false.obs;
   var signatureDetailsDone = false.obs;
 
-  //
-  @override
-  void onInit() {
-    uID.value = _auth.authIn.currentUser!.uid;
-    super.onInit();
-  }
-
-  @override
-  void onClose() {
-    firstNameController.dispose();
-    otherNamesController.dispose();
-    lastNameController.dispose();
-    dateOfBirthController.dispose();
-    sexController.dispose();
-    mobileNoController.dispose();
-    emailController.dispose();
-    passportIDController.dispose();
-    visaValidityController.dispose();
-    addressController.dispose();
-    companyController.dispose();
-    arrivalDateController.dispose();
-    arrivalTimeController.dispose();
-    departureTimeController.dispose();
-    departureDateController.dispose();
-    comingFromController.dispose();
-    goingToController.dispose();
-    roomTypeController.dispose();
-    roomRateController.dispose();
-    noOfRoomsController.dispose();
-    apartmentController.dispose();
-    noOfGuestsController.dispose();
-    depositedController.dispose();
-    super.onClose();
-  }
+  //@override
+  // void onClose() {
+  //   firstNameController.dispose();
+  //   otherNamesController.dispose();
+  //   lastNameController.dispose();
+  //   dateOfBirthController.dispose();
+  //   sexController.dispose();
+  //   mobileNoController.dispose();
+  //   emailController.dispose();
+  //   passportIDController.dispose();
+  //   visaValidityController.dispose();
+  //   addressController.dispose();
+  //   companyController.dispose();
+  //   arrivalDateController.dispose();
+  //   arrivalTimeController.dispose();
+  //   departureTimeController.dispose();
+  //   departureDateController.dispose();
+  //   comingFromController.dispose();
+  //   goingToController.dispose();
+  //   roomTypeController.dispose();
+  //   roomRateController.dispose();
+  //   noOfRoomsController.dispose();
+  //   apartmentController.dispose();
+  //   noOfGuestsController.dispose();
+  //   depositedController.dispose();
+  //   super.onClose();
+  // }
 
   void completionStatus(int thePageIndex) {
     if (thePageIndex == 1 && identificationDetailsDone.value == true) {
@@ -166,32 +166,43 @@ class Homecontroller extends GetxController {
       return false;
     }
 
+    final dateofbirthError = FormValidator.validateDOB(_datePickerControlleler.selectedDOBDate.value);
+    if (dateofbirthError != null) {
+      errorMessage.value = dateofbirthError;
+      return false;
+    }
+
     final emailError = FormValidator.validateEmail(emailController.text.trim());
     if (emailError != null) {
       errorMessage.value = emailError;
+      return false;
     }
 
     final addressError =
         FormValidator.validateAddress(addressController.text.trim());
     if (addressError != null) {
       errorMessage.value = addressError;
+      return false;
     }
 
     final passportIDError =
-        FormValidator.validatePasspordID(passportIDController.text.trim());
+        FormValidator.validatePassportID(passportIDController.text.trim());
     if (passportIDError != null) {
       errorMessage.value = passportIDError;
+      return false;
     }
 
-    final sexError = FormValidator.validateSex(sexController.text.trim());
+    final sexError = FormValidator.validateSex(genderSelect.value.toString());
     if (sexError != null) {
       errorMessage.value = sexError;
+      return false;
     }
 
     final mobileError =
         FormValidator.validateMobile(mobileNoController.text.trim());
     if (mobileError != null) {
       errorMessage.value = mobileError;
+      return false;
     }
 
     //
@@ -200,27 +211,28 @@ class Homecontroller extends GetxController {
   }
 
   void onFormSaved() async {
+    if (errorMessage.value.isNotEmpty) {
+      showSnackbar('Error', errorMessage.value);
+    }
+
     if (!validator()) {
       return;
     }
 
     try {
-      isLoading.value = true;
-
-      _formData.uid = uID.value;
+      if (_signInController.uID.isEmpty) {
+        throw Exception('User data not complete');
+      }
+      _formData.uid = _signInController.uID.value;
       _formData.firstname = firstNameController.text.trim();
       _formData.othernames = otherNamesController.text.trim();
       _formData.lastname = lastNameController.text.trim();
       _formData.dateofbirth = dateOfBirthController.text.trim();
-      _formData.sex = sexController.text.trim();
+      _formData.sex = genderSelect.value;
       _formData.mobile = mobileNoController.text.trim();
       _formData.email = emailController.text.trim();
       _formData.passportId = passportIDController.text.trim();
       _formData.address = addressController.text.trim();
-
-      if (uID.isEmpty) {
-        throw Exception('User data not complete');
-      }
 
       var guestFormData = await _formData.createFormData();
 

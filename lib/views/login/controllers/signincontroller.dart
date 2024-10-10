@@ -101,10 +101,12 @@ class SignInController extends GetxController {
 
   // Define the timeout duration (e.g., 10 seconds)
   final Duration _loginTimeoutDuration = const Duration(seconds: 30);
+  //
   var isLoading = false.obs;
   var errorMessage = ''.obs;
   var theloginFirbaseError = ''.obs;
   var currentUserName = ''.obs;
+  var uID = ''.obs;
   final RxBool userisLoggedIn = false.obs;
   dynamic _userData;
 
@@ -126,7 +128,6 @@ class SignInController extends GetxController {
   }
 
   Future<void> getCurrentUser() async {
-    print('RUNING GET USER');
     if (userisLoggedIn.value) {
       if (_userData != null) {
         //DisplayUserData displayUserData = DisplayUserData.fromMap(_userData);
@@ -154,7 +155,7 @@ class SignInController extends GetxController {
         isLoading.value = true;
         var userData = await _fetchUserDataModel.fetchUserData(user);
         _userData = userData;
-
+        uID.value = user.uid;
         if (userData == null) {
           throw Exception('User data not found.');
         }
